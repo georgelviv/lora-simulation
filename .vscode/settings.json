@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    ".pytest_cache/": true,
+    ".venv/": true,
+    "build/": true,
+    "tests/tmp/": true,
+    "**/*.egg-info": true,
+    "**/__pycache__": true
+  }
+}
