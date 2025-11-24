@@ -3,6 +3,7 @@ from .phy_utils import compute_rssi
 import logging
 from .logger import default_logger
 from .environment import LORA_SIMULATION_ENVIRONMENTS
+from .utils import lora_log
 
 class LoraSimulation():
   def __init__(
@@ -14,6 +15,7 @@ class LoraSimulation():
     self.env_model = env_model
 
   def set_config(self, config: Config) -> None:
+    self.logger.info(lora_log("CONFIG_SYNC", config))
     self.config = config
 
   def get_config(self) -> Config:
@@ -32,7 +34,7 @@ class LoraSimulation():
       shadow_sigma_db=self.env_model.shadow_sigma_db
     )
 
-    return {
+    state: State = {
       'bytes_per_second': 611.0,
       'chunks_count': 1.0,
       'delay': 151.0,
@@ -41,3 +43,7 @@ class LoraSimulation():
       'time_over_air': 36.0,
       'attempt': 2
     }
+
+    self.logger.info(lora_log("PING", state))
+
+    return state
