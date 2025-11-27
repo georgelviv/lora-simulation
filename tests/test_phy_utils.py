@@ -68,5 +68,5 @@ def test_lora_time_on_air_ms():
   assert lora_time_on_air_ms(6, 125e3, 1024) == 1708
 
 def test_bytes_per_second():
-  assert bytes_per_second(1000, 1) == 1
-  assert bytes_per_second(100, 1) == 0.1
+  assert bytes_per_second(1000, 1000) == 1000
+  assert bytes_per_second(100, 1000) == 100

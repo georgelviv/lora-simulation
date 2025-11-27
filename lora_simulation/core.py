@@ -1,7 +1,8 @@
 from .models import Config, State, EnvironmentModel
 from .utils import (
   lora_rssi_hata_chip, lora_snr_chip, lora_log,
-  lora_delay_ms, chunks_count, lora_time_on_air_ms
+  lora_delay_ms, chunks_count, lora_time_on_air_ms,
+  bytes_per_second
 )
 import logging
 from .logger import default_logger
@@ -59,13 +60,15 @@ class LoraSimulation():
       cr=cr
     )
 
+    toa = lora_time_on_air_ms(sf, bw, payload_size, cr, pl)
+
     state: State = {
-      'BPS': 611.0,
+      'BPS': bytes_per_second(payload_size, toa),
       'CHC': chunks_count(payload_size, ih, pl),
       'DELAY': delay,
       'RSSI': rssi_chip,
       'SNR': snr_chip,
-      'TOA': lora_time_on_air_ms(sf, bw, payload_size, cr, pl),
+      'TOA': toa,
       'ATT': 1
     }
 
