@@ -1,6 +1,6 @@
 from lora_simulation.utils import (
   path_loss, compute_rssi, lora_snr_chip,
-  lora_delay_ms
+  lora_delay_ms, chunks_count
 )
 from lora_simulation.models import AreaType
 import random
@@ -53,3 +53,8 @@ def test_lora_snr_chip():
 def test_lora_delay_ms():
   assert lora_delay_ms(10, 500e3, 1000, 8) == 4823.0
   assert lora_delay_ms(10, 500e3, 10, 8) == 229.4
+
+def test_chunks_count():
+  assert chunks_count(10) == 1
+  assert chunks_count(1000) == 5
+  assert chunks_count(1000, True, 100) == 10
