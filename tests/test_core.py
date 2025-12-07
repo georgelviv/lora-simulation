@@ -26,12 +26,12 @@ def test_lora_simulation():
   assert lora_sim.get_config() == lora_config
 
   assert lora_sim.ping() == {
-    'BPS': 318.4713375796178,
+    'BPS': 318.471,
     'CHC': 1.0,
     'DELAY': 840.7,
     'RSSI': -66.613,
     'SNR': 10.75,
-    'TOA': 31.400000000000002,
+    'TOA': 31.4,
     'ATT': 1
   }
 

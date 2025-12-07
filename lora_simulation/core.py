@@ -72,6 +72,8 @@ class LoraSimulation():
       'ATT': 1
     }
 
+    state = { key: round(value, 3) if isinstance(value, (float, int)) else value for key, value in state.items() }
+
     self.logger.info(lora_log("PING", state))
 
     return state
