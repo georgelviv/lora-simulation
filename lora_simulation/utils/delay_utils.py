@@ -64,9 +64,8 @@ def lora_time_on_air_ms(
 
   return toa
 
-
 def rtoa_ms(toa_ms: float, sf: int, bw_hz: float) -> float:
-  ts_ms = (2 ** sf) / (bw_hz * 1000) * 1000.0
+  ts_ms = (2 ** sf) / (bw_hz) * 1000.0
 
   if sf >= 7:
     return toa_ms + 8.0 * ts_ms

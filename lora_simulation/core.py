@@ -28,7 +28,7 @@ class LoraSimulation():
     freq = self.config.get('FQ') * 10e6
     tx_power_dbm = self.config.get('TP')
     sf = self.config.get('SF')
-    bw = self.config.get('BW') * 10e3
+    bw = self.config.get('BW') * 1000
     cr = self.config.get('CR')
     ih = self.config.get('IH')
     pl = self.config.get('PL')
