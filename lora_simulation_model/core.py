@@ -8,7 +8,8 @@ import logging
 from .logger import default_logger
 from .environment import LORA_SIMULATION_ENVIRONMENTS
 
-class LoraSimulation():
+class LoraSimulationModel():
+
   def __init__(
       self, logger: logging.Logger = default_logger, 
       env_model: EnvironmentModel = LORA_SIMULATION_ENVIRONMENTS['open_field']
@@ -17,14 +18,21 @@ class LoraSimulation():
     self.logger = logger
     self.env_model = env_model
 
-  def set_config(self, config: Config) -> None:
-    self.logger.info(lora_log("CONFIG_SYNC", config))
-    self.config = config
+  async def start(self):
+    pass
 
-  def get_config(self) -> Config:
+  async def stop(self):
+    pass
+
+  async def config_sync(self, id: int, params: Config) -> bool:
+    self.logger.info(lora_log("CONFIG_SYNC", params))
+    self.config = params
+    return True
+
+  async def config_get(self) -> Config:
     return self.config
   
-  def ping(self) -> State:
+  async def ping(self, id: int) -> State:
     freq = self.config.get('FQ') * 10e6
     tx_power_dbm = self.config.get('TP')
     sf = self.config.get('SF')
