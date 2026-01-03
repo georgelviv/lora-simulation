@@ -50,8 +50,7 @@ class LoraSimulationModel():
       shadow_sigma_db=self.env_model.shadow_sigma_db,
       hb_m=self.env_model.hb_m,
       hm_m=self.env_model.hm_m,
-      area=self.env_model.area_type,
-      sf=sf
+      area=self.env_model.area_type
     )
 
     snr_chip = lora_snr_chip(
