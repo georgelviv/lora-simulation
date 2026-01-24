@@ -9,6 +9,9 @@ from .logger import default_logger
 from .environment import LORA_SIMULATION_ENVIRONMENTS
 
 class LoraSimulationModel():
+  @property
+  def name(self) -> str:
+    return "simulation"
 
   def __init__(
       self, logger: logging.Logger = default_logger, 
