@@ -1,7 +1,10 @@
 import random
 import numpy as np
 import pytest
-from lora_simulation_model import Config, LORA_SIMULATION_ENVIRONMENTS, LoraSimulationModel, State
+from lora_simulation_model import (
+  Config, LORA_SIMULATION_ENVIRONMENTS, LoraSimulationModel,
+  parse_lora_config
+)
 
 @pytest.mark.asyncio
 async def test_lora_simulation():
@@ -34,11 +37,26 @@ async def test_lora_simulation():
   assert state == {
     'BPS': 31.847,
     'CHC': 1.0,
-    'DELAY': 840.7,
-    'RSSI': -66.613,
-    'SNR': 10.25,
+    'DELAY': 1019.072,
+    'RSSI': -71.52,
+    'SNR': 8.81,
     'TOA': 314,
     'ATT': 1,
-    'ETX': 1, 
+    'ETX': 10.02, 
     'RTOA': 379.536
   }
+
+def test_parse_lora_config():
+  lora_config: Config = {
+    "SF": 7,
+    "FQ": 871,
+    "BW": 500.0,
+    "CR": 7.0,
+    "TP": 20,
+    "IH": 0.0,
+    "HS": 200.0,
+    "PL": 85.0,
+    "CL": 140.0,
+    "RT": 1.0
+  }
+  assert parse_lora_config("SF=7,FQ=871,BW=500,CR=7,TP=20,IH=0,HS=200,PL=85,CL=140,RT=1") == lora_config

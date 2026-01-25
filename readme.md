@@ -23,3 +23,10 @@ pip install git+https://github.com/georgelviv/lora-simulation.git
 ```bash
 pytest -s --log-cli-level=DEBUG
 ```
+
+
+## Tests
+
+```bash
+poetry run pytest
+```
