@@ -2,7 +2,7 @@ from .models import Config, State, EnvironmentModel
 from .utils import (
   lora_rssi_hata_chip, compute_snr, lora_log,
   calculate_delay, chunks_count, lora_time_on_air_ms,
-  bytes_per_second, rtoa_ms
+  bytes_per_second, rtoa_ms, estimate_tx_energy
 )
 import logging
 from .logger import default_logger
@@ -73,6 +73,8 @@ class LoraSimulationModel():
       pl_bytes=pl
     )
 
+    energy = estimate_tx_energy(tx_power_dbm, rtoa, cr)
+
     state: State = {
       'BPS': bytes_per_second(payload_size, toa),
       'CHC': chunks_count(payload_size, ih, pl),
@@ -81,7 +83,7 @@ class LoraSimulationModel():
       'SNR': snr_chip,
       'RTOA': rtoa,
       'TOA': toa,
-      'ETX': 1,
+      'ETX': energy,
       'ATT': 1
     }
 
